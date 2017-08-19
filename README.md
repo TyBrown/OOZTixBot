@@ -4,6 +4,11 @@ The OneOrZero TixBot is a Robot Libary written in Python designed to perform aut
 
 Note: This is for v1.8 of the OneOrZero Helpdesk System, and is not designed for, nor is it tested with the newer OneOrZero AIMS system.
 
+## Canonical source
+
+The canonical source of OOZTixBot is [hosted on git.tybrown.net](https://git.tybrown.net/TyBrown/ooz_tixbot) and `master` branch is automatically [mirrored to GitHub.com](https://github.com/TyBrown/OOZTixBot).
+
+
 ## Code Example
 
 ```
