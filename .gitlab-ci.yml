@@ -1,0 +1,30 @@
+variables:
+  GIT_STRATEGY: clone
+
+stages:
+  - test
+  - mirror
+
+pep8:
+  stage: test
+  image:
+    name: "eeacms/pep8"
+    entrypoint: ["/bin/sh", "-c"]
+  script:
+   - python -V
+   - find . -type f -name "*.py" | xargs pep8 --count --show-source
+
+github:
+  stage: mirror
+  only:
+    - master@TyBrown/ooz_tixbot
+  image:
+    name: "alpine/git"
+    entrypoint: ["/bin/sh", "-c"]
+  script:
+    - git version
+    - mkdir ~/.ssh
+    - echo -e "${GITHUB_DEPLOY_KEY_PRIVATE}" > ~/.ssh/github; chmod 600 ~/.ssh/github
+    - echo -e "Host github.com\n    User git\n    IdentityFile ~/.ssh/github\n    StrictHostKeyChecking no" > ~/.ssh/config
+    - git remote add github git@github.com:TyBrown/OOZTixBot.git
+    - git push github --all
